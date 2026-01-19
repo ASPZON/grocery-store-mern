@@ -1,24 +1,22 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import Home from './pages/Home'
-import Login from './pages/Login'
-import Cart from './pages/Cart'
+import { SearchProvider } from './context/SearchContext'
+import { CartProvider } from './context/CartContext'
 import Navbar from './components/Navbar'
-import Footer from './components/Footer'
-import ScrollToTopButton from './components/ScrollToTopButton'
+import Home from './pages/Home'
 
 function App() {
   return (
     <BrowserRouter>
-      <Navbar />
+      <CartProvider>
+        <SearchProvider>
+          <Navbar />
 
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/cart" element={<Cart />} />
-      </Routes>
+          <Routes>
+            <Route path="/" element={<Home />} />
+          </Routes>
 
-      <ScrollToTopButton />
-      <Footer />
+        </SearchProvider>
+      </CartProvider>
     </BrowserRouter>
   )
 }
